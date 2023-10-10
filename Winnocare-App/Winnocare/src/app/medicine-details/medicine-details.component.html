@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'MEDICINE_DETAILS.MEDICINE_DETAILS' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="medicine-details-container">
+    <form [formGroup]="medicineDetailsForm" (ngSubmit)="validateForm(medicineDetailsForm)">
+
+      <ion-item>
+        <ion-label text-wrap class="textDecor" position="fixed">{{'MEDICINE_DETAILS.MEDICINE_NAME' |
+          translate}}</ion-label>
+        <ion-input formControlName="name" type="text"
+          placeholder="{{'MEDICINE_DETAILS.ENTER_MEDICINE_NAME' | translate}}" />
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="medicineDetailsForm.get('name')?.invalid && (medicineDetailsForm.get('name')?.dirty || medicineDetailsForm.get('name')?.touched)">
+          {{'ERROR.MEDICINE_NAME' | translate}}
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label text-wrap class="textDecor" position="fixed">{{'MEDICINE_DETAILS.EXPIRY_DATE' |
+          translate}}</ion-label>
+        <ion-input formControlName="expiry" type="date"
+          placeholder="{{'MEDICINE_DETAILS.SELECT_EXPIRY_DATE' | translate}}" />
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="medicineDetailsForm.get('expiry')?.invalid && (medicineDetailsForm.get('expiry')?.dirty || medicineDetailsForm.get('expiry')?.touched)">
+          {{'ERROR.MEDICINE_NAME' | translate}}
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label text-wrap position="fixed" class="textDecor">{{'MEDICINE_DETAILS.FREQUENCY' | translate}}</ion-label>
+        <ion-select placeholder="{{'MEDICINE_DETAILS.SELECT_DAYS_IN_A_WEEK' | translate}}" [multiple]="true"
+          formControlName="frequency">
+          <ion-select-option value="Monday">{{'MEDICINE_DETAILS.MONDAY' |
+            translate}}</ion-select-option>
+          <ion-select-option value="Tuesday">{{'MEDICINE_DETAILS.TUESDAY' |
+            translate}}</ion-select-option>
+          <ion-select-option value="Wednesday">{{'MEDICINE_DETAILS.WEDNESDAY' |
+            translate}}</ion-select-option>
+          <ion-select-option value="Thursday">{{'MEDICINE_DETAILS.THURSDAY' |
+            translate}}</ion-select-option>
+          <ion-select-option value="Friday">{{'MEDICINE_DETAILS.FRIDAY' |
+            translate}}</ion-select-option>
+          <ion-select-option value="Saturday">{{'MEDICINE_DETAILS.SATURDAY' |
+            translate}}</ion-select-option>
+          <ion-select-option value="Sunday">{{'MEDICINE_DETAILS.SUNDAY' |
+            translate}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="medicineDetailsForm.get('frequency')?.invalid && (medicineDetailsForm.get('frequency')?.dirty || medicineDetailsForm.get('frequency')?.touched)">
+          {{'ERROR.FREQUENCY' | translate}}
+        </div>
+      </div>
+
+      <ion-item lines="none">
+        <div>
+          <ion-label class="textDecor chips" position="fixed">{{'MEDICINE_DETAILS.TIME_OF_DAY' | translate}}</ion-label>
+          <span *ngFor="let time of timeOfDay">
+            <ion-chip [ngClass]="{'select-chip': time.checked == true}" (click)="updateTimeOfDay(time)"
+              [outline]="true">{{time.value}}</ion-chip>
+          </span>
+        </div>
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="medicineDetailsForm.get('timeOfDay')?.invalid && (medicineDetailsForm.get('timeOfDay')?.dirty || medicineDetailsForm.get('timeOfDay')?.touched)">
+          {{'ERROR.TIME_OF_DAY' | translate}}
+        </div>
+      </div>
+
+      <span *ngFor="let time of timeOfDay, let i = index">
+        <ion-item *ngIf="time.checked">
+          <ion-label text-wrap position="fixed" class="textDecor">{{'MEDICINE_DETAILS.TIME' | translate:
+            {'timeOfDay':time.value} }}</ion-label>
+          <ion-datetime-button slot="end" datetime="{{'datetime' + i}}"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime formControlName="{{time.code | lowercase }}" (ionChange)="timeSelected($event, time)" [showDefaultButtons]="true" presentation="time"
+                id="{{'datetime'+i}}"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        <div class="error-label" *ngIf="time.checked">
+          <div
+            *ngIf="medicineDetailsForm.get(time.code | lowercase)?.invalid && (medicineDetailsForm.get(time.code | lowercase)?.dirty || medicineDetailsForm.get(time.code | lowercase)?.touched)">
+            {{'ERROR.TIME_OF_DAY' | translate}}
+          </div>
+        </div>
+      </span>
+
+      <ion-item>
+        <ion-label text-wrap class="textDecor" position="fixed">{{'MEDICINE_DETAILS.START_DATE' |
+          translate}}</ion-label>
+        <ion-input formControlName="startDate" type="date"
+          placeholder="{{'MEDICINE_DETAILS.SELECT_START_DATE' | translate}}" />
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="medicineDetailsForm.get('startDate')?.invalid && (medicineDetailsForm.get('startDate')?.dirty || medicineDetailsForm.get('startDate')?.touched)">
+          {{'ERROR.START_DATE' | translate}}
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label text-wrap class="textDecor" position="fixed">{{'MEDICINE_DETAILS.END_DATE' | translate}}</ion-label>
+        <ion-input formControlName="endDate" type="date"
+          placeholder="{{'MEDICINE_DETAILS.SELECT_END_DATE' | translate}}" />
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="medicineDetailsForm.get('endDate')?.invalid && (medicineDetailsForm.get('endDate')?.dirty || medicineDetailsForm.get('endDate')?.touched)">
+          {{'ERROR.END_DATE' | translate}}
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-button class="ion-text-wrap" (click)="validateForm(medicineDetailsForm)" expand="block"
+    size="large">{{'COMMON.DONE' |
+    translate}}</ion-button>
+    <ion-button class="ion-text-wrap" (click)="scanBarcode()" expand="block"
+    size="large">{{'MEDICINE_DETAILS.SCAN' |
+    translate}}</ion-button>
+</ion-footer>

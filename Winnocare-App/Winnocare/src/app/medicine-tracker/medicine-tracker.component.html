@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'COMMON.MEDICINE_TRACKER' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-tabs #tabs (ionTabsDidChange)="tabChange(tabs)">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="medicineList">
+      <ion-icon name="list-outline"></ion-icon>
+      {{'MEDICINE_TRACKER.ONGOING_MEDS' | translate}}
+    </ion-tab-button>
+    <ion-tab-button tab="medicineDue" disabled="true">
+      <ion-icon name="today-outline"></ion-icon>
+      {{'MEDICINE_TRACKER.TODAY' | translate}}
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

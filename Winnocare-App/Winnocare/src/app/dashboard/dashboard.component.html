@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'DASHBOARD.DASHBOARD' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="dashboard-container">
+    <ion-card>
+      <div class="div-img-container">
+        <img alt="SOS" class="img-category" src="assets\img\sos-icon.svg" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{'COMMON.SOS' | translate}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{'DASHBOARD.SOS_DESCRIPTION' | translate}}
+      </ion-card-content>
+
+      <ion-button disabled="{{!disableSosBtn}}" (click)="configureSos()" fill="clear">{{'DASHBOARD.CONFIGURE' | translate}}</ion-button>
+      <ion-button *ngIf="!disableSosBtn" (click)="toggleSos()" fill="clear">{{'DASHBOARD.ENABLE' | translate}}</ion-button>
+      <ion-button *ngIf="disableSosBtn" (click)="toggleSos()" fill="clear">{{'DASHBOARD.DISABLE' | translate}}</ion-button>
+    </ion-card>
+
+    <ion-card>
+      <div class="div-img-container">
+        <img alt="Book an appointment" class="img-category" src="assets\img\date-and-time-icon.svg" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{'DASHBOARD.BOOK_AN_APPOINTMENT' | translate}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{'DASHBOARD.BOOK_AN_APPOINTMENT_DESCRIPTION' | translate}}
+      </ion-card-content>
+
+      <ion-button disabled="true" fill="clear" (click)="bookDoctor()">{{'DASHBOARD.BOOK_NOW' | translate}}</ion-button>
+      <ion-button disabled="true" fill="clear">{{'DASHBOARD.APPOINTMENTS' | translate}}</ion-button>
+    </ion-card>
+
+    <ion-card>
+      <div class="div-img-container">
+        <img alt="Medicine Tracker" class="img-category" src="assets\img\prescription-icon.svg" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{'COMMON.MEDICINE_TRACKER' | translate}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{'DASHBOARD.MEDICINE_TRACKER_DESCRIPTION' | translate}}
+      </ion-card-content>
+
+      <ion-button fill="clear" (click)="medicineTracker()">{{'DASHBOARD.TRACK' | translate}}</ion-button>
+      <ion-button fill="clear" (click)="addMedicine()">{{'DASHBOARD.ADD_MEDICINE' | translate}}</ion-button>
+    </ion-card>
+
+    <ion-card>
+      <div class="div-img-container">
+        <img alt="Folding Clothes" class="img-category" src="assets\img\folding-clothes.png" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{'DASHBOARD.FOLDING_CLOTHES' | translate}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{'DASHBOARD.FOLDING_CLOTHES_DESCRIPTION' | translate}}
+      </ion-card-content>
+
+      <ion-button fill="clear" (click)="foldClothes()">{{'DASHBOARD.FOLDING_CLOTHES' | translate}}</ion-button>
+    </ion-card>
+    <ion-card>
+      <div class="div-img-container">
+        <img alt="FAQ" class="img-category" src="assets\img\FAQ.png" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{'FAQ.TITLE' | translate}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{'FAQ.SUBTITLE' | translate}}
+      </ion-card-content>
+
+      <ion-button fill="clear" (click)="faqModule()">{{'FAQ.NAV_TEXT' | translate}}</ion-button>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,58 @@
+ion-item {
+  margin-top: 15px;
+}
+
+ion-button {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+}
+
+.textDecor {
+  font-weight: bold;
+  color: cornflowerblue;
+}
+
+.error-label {
+  height: 10px;
+  color: red;
+  padding-left: 15px;
+}
+
+.link-forgot-password {
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.div-forgot-password {
+  margin-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn {
+  width: 100%;
+}
+
+.div-folding-clothes{
+    display: flex;
+    justify-content: center;
+}
+
+.link-folding-clothes {
+  text-decoration: none;
+}

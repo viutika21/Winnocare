@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ 'LOGIN.WELCOME' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="login-container">
+    <ion-img src="assets\img\SOSEmergencyCalligIcon.png" class="center"></ion-img>
+    <form [formGroup]="loginForm" (ngSubmit)="validateForm(loginForm)">
+
+      <ion-item>
+        <ion-label text-wrap position="fixed" class="textDecor">{{ 'COMMON.USERNAME' | translate }}</ion-label>
+        <ion-input formControlName="username" type="text" placeholder="{{'COMMON.ENTER_USERNAME' | translate}}" />
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+          {{ 'ERROR.USERNAME' | translate }}
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label text-wrap position="fixed" class="textDecor">{{ 'COMMON.PASSWORD' | translate }}</ion-label>
+        <ion-input formControlName="password" type="password" placeholder="{{'LOGIN.ENTER_PASSWORD' | translate}}" />
+      </ion-item>
+      <div class="error-label">
+        <div
+          *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+          {{ 'ERROR.PASSWORD' | translate }}
+        </div>
+      </div>
+
+      <div class="div-forgot-password">
+        <a class="link-forgot-password" [routerLink]="['/forgotPassword']">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+      </div>
+
+      <div class="btn-actions">
+        <ion-button class="btn ion-text-wrap" (click)="register()" size="large">
+          {{ 'LOGIN.REGISTER' | translate }}
+        </ion-button>
+        <ion-button class="btn ion-text-wrap" type="submit" size="large">{{ 'LOGIN.LOGIN' | translate }}</ion-button>
+      </div>
+
+    </form>
+
+    <ion-button href="tel:{{sosContact}}" disabled={{disableSos}} shape="round" color="danger" size="large">
+      {{ 'COMMON.SOS' | translate }}
+    </ion-button>
+
+    <!-- <div class="div-folding-clothes">
+      <a class="link-folding-clothes" href="https://drive.google.com/file/d/18ssyQw4oqKw7Dp9RIL1GVIwB-DV-wC46/view?usp=share_link">{{ 'LOGIN.FOLDING_CLOTHES' | translate }}</a>
+    </div> -->
+
+  </div>
+</ion-content>

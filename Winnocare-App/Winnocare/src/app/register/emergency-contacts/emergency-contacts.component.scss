@@ -1,0 +1,21 @@
+ion-item {
+    margin-top: 15px;
+}
+
+.emergency-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: inherit;
+}
+
+.textDecor {
+    font-weight: bold;
+    color: cornflowerblue;
+}
+
+.error-label {
+    height: 10px;
+    color: red;
+    padding-left: 15px;
+}
